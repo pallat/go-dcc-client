@@ -1,0 +1,175 @@
+package dictionary
+
+import (
+	"bytes"
+	"github.com/fiorix/go-diameter/diam/dict"
+)
+
+// Default is a Parser object with pre-loaded
+// Base Protocol and Credit Control dictionaries.
+
+func Load() *dict.Parser {
+	dict.Default.Load(bytes.NewReader([]byte(baseXML)))
+	dict.Default.Load(bytes.NewReader([]byte(creditcontrolXML)))
+	dict.Default.Load(bytes.NewReader([]byte(tgpprorfXML)))
+	return dict.Default
+}
+
+
+
+                <rule avp="Balance-Information" required="false" max="1"/>
+				<rule avp="Management-Status" required="false" max="1"/>
+
+
+
+		<avp name="Management-Status" code="22149" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+
+
+    <avp name="Balance-Information" code="21100" must="V,M" may="P" must-not="-" may-encrypt="N">
+      <data type="Grouped">
+        <rule avp="Calling-Party-Address" required="false" max="1"/>
+        <rule avp="Access-Method" required="false" max="1"/>
+        <rule avp="Account-Query-Method" required="false" max="1"/>
+        <rule avp="SSP-Time" required="false" max="1"/>
+        <rule avp="First-Active-Date" required="false" max="1"/>
+        <rule avp="Subscriber-State" required="false" max="1"/>
+        <rule avp="Active-Period" required="false" max="1"/>
+        <rule avp="Grace-Period" required="false" max="1"/>
+        <rule avp="Disable-Period" required="false" max="1"/>
+        <rule avp="Balance" code" required="false" max="1"/>
+        <rule avp="Language-IVR" required="false" max="1"/>
+        <rule avp="Language-SMS" required="false" max="1"/>
+        <rule avp="Account-Change-Info" required="false" max="10"/>
+        <rule avp="Offer-Information" required="false" max="10"/>
+      </data>
+    </avp>
+
+
+		<avp name="First-Active-Date" code="20771" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Subscriber-State" code="30814" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Unsigned32"/>
+		</avp>
+		<avp name="Active-Period" code="20733" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Grace-Period" code="20734" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Disable-Period" code="20735" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Balance" code="30841" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer64"/>
+		</avp>
+		<avp name="Language-IVR" code="21194" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer32"/>
+		</avp>
+		<avp name="Language-SMS" code="21195" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer32"/>
+		</avp>
+		<avp name="Account-Change-Info" code="20349" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Grouped">
+				<rule avp="Account-Id" required="false" max="1"/>
+				<rule avp="Account-Type" required="false" max="1"/>
+				<rule avp="Account-Type-Desc" required="false" max="1"/>
+				<rule avp="Account-Begin-Date" required="false" max="1"/>
+				<rule avp="Related-Type" required="false" max="1"/>
+				<rule avp="Related-Object-ID" required="false" max="1"/>
+				<rule avp="Current-Account-Balance" required="false" max="1"/>
+				<rule avp="Account-End-Date" required="false" max="1"/>
+				<rule avp="Measure-Type" required="false" max="1"/>
+			</data>
+		</avp>
+
+		<avp name="Account-Id" code="20357" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Account-Type" code="20372" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Unsigned32"/>
+		</avp>
+		<avp name="Account-Type-Desc" code="22320" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Account-Begin-Date" code="22123" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Related-Type" code="22322" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Unsigned32"/>
+		</avp>
+		<avp name="Related-Object-ID" code="22323" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Current-Account-Balance" code="20350" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer64"/>
+		</avp>
+		<avp name="Account-End-Date" code="20359" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="OctetString"/>
+		</avp>
+		<avp name="Measure-Type" code="20353" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer32"/>
+		</avp>
+
+		<avp name="Offer-Information" code="23000" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Grouped">
+				<rule avp="Offer-Info" required="false" max="1"/>
+			</data>
+		</avp>
+
+		<avp name="Offer-Info" code="22150" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Grouped">
+				<rule avp="Offer-Id" required="false" max="1"/>
+				<rule avp="Offer-Order-Key" required="false" max="1"/>
+				<rule avp="Effective-Time" required="false" max="1"/>
+				<rule avp="Status" required="false" max="1"/>
+				<rule avp="Current-Cycle" required="false" max="1"/>
+				<rule avp="Total-Cycle" required="false" max="1"/>
+				<rule avp="Offer-Order-Integration-Key" required="false" max="1"/>
+				<rule avp="External-Offer-Code" required="false" max="1"/>
+			</data>
+		</avp>
+
+		<avp name="Offer-Id" code="22151" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+		<avp name="Offer-Order-Key" code="22152" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+		<avp name="Effective-Time" code="22153" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+		<avp name="Status" code="22155" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+		<avp name="Current-Cycle" code="22158" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer32"/>
+		</avp>
+		<avp name="Total-Cycle" code="22159" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Integer32"/>
+		</avp>
+		<avp name="Offer-Order-Integration-Key" code="22160" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+		<avp name="External-Offer-Code" code="22144" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+
+
+		<avp name="Calling-Party-Address" code="20336" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="UTF8String"/>
+		</avp>
+
+		<avp name="Access-Method" code="20340" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Unsigned32"/>
+		</avp>
+
+		<avp name="Account-Query-Method" code="20346" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Unsigned32"/>
+		</avp>
+
+		<avp name="SSP-Time" code="20386" must="V,M" may="P" must-not="-" may-encrypt="N">
+			<data type="Time"/>
+		</avp>
